@@ -1,31 +1,124 @@
 ---
-title: Hello World (example)
-date: 2019-04-15
+title: Scope and Closure
+date: 2019-10-21
 ---
 
-Hello, world! This is a demo post for `gatsby-theme-blog`.
+## What is Closure
 
-Delete me, and get writing!
-
-```js:title=gatsby-config.js
-module.exports = {
-  plugins: [
-    "gatsby-theme-blog", // highlight-line
-    "gatsby-theme-notes"
-  ]
-};
-```
-
-This is another paragraph after the code block.
-
-## This is a secondary heading
+Closure allows a function to reference values outside its scope.
 
 ```jsx
-import React from "react";
-import { ThemeProvider } from "theme-ui";
-import theme from "./theme";
+function a() {
+  let v = 5;
+  function add() {
+    return v + 2;
+  }
+  return add();
+};
 
-export default props => (
-  <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
-);
+// v is a local variable inside function a
+// function add has access to v, a variable contained in an scope
+
 ```
+
+
+Closure is the function and its local variables stored for usage outside of its local scope. An example of this can be seen in currying. 
+
+Currying example:
+
+```jsx
+function div(x) {
+  let a = function divisor(y) {
+    return x / y;
+  }
+  return a;
+};
+let divide10 = div(10);
+divide10(2) // returns 5
+divide10(5) // returns 2
+```
+
+The x value in divide10 is a closure (containing the variable assigned inside the lexical environment). Function divide10 can then be called with any value of y and return the correct results.
+
+## module pattern
+
+Module pattern is a common usage of closure allowing outside functions to utilize inner functions and variables.
+Closure allows the creation of private methods which block access to inner code and make a cleaner global namespace.
+
+```jsx
+function priv() {
+  let innerString = 'Hello!'
+  return {
+    hi: function() {
+      innerString = 'Hi!';
+    },
+    bye: function() {
+      innerString = 'Bye';
+    },
+    greet: function() {
+      return innerString;
+    }
+  }
+}
+let bye = priv(); // creating a new closure with independent lexical environment
+let hi = priv() // another independent closure
+
+bye.bye(); // function bye is called changing the innerString to 'Bye!'
+hi.hi(); // function hi called changing innerString to 'Hi!'
+
+bye.greet(); // returns "Bye!"
+hi.greet(); // returns 'Hi!'
+```
+
+
+
+
+## Closure Scope
+
+All closures have three scopes. The local scope, outer function scope, and the global scope. Closure can access data in each layer.
+
+```jsx
+// global scope
+function div(x) {
+  x = 20; // outer function scope
+  let a = function divisor(y) {
+    return x / y; // local scope
+  }
+  return a;
+  }
+let a = div()
+a(4) // returns 5
+```
+
+Closure can be useful for creating private methods and freeing up the global scope. However, unnecessary closures will slow down performance.
+
+## Global and Local Scope
+
+Inner scopes can access variables in outer scopes (including the Global Scope i.e. window). Outer scopes on the other hand cannot access variables from inner scopes. Within an inner scope, variables within the local scope take priority over variables in the outer scope.
+
+For example:
+
+```jsx
+let re = 10; // the Global scope variable
+function d() {
+  let re = 45; // the Local scope variable
+  return re;
+}
+d(); // when function d is called, the returned value is 45
+```
+
+## Function Scope and Block Scope
+
+Function scope uses the var keyword, which allows the function to access variables inside inner functions.
+
+Block scope uses the let keyword, only allowing an outer function to access only its own local variables (hiding those contained inside inner functions).
+
+## Window Object
+
+The window represents the global scope. Variables declared with var in the global scope can be accessed through the window object.
+
+```jsx
+var we = 10;
+window.we; // returns 10 
+```
+

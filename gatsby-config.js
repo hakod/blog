@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/reponame",
   plugins: [
     {
       resolve: `gatsby-theme-blog`,
@@ -7,17 +8,17 @@ module.exports = {
   ],
   // Customize your site metadata:
   siteMetadata: {
-    title: `My Blog Title`,
-    author: `My Name`,
+    title: `Coding Blog`,
+    author: `정범진`,
     description: `My site description...`,
     social: [
       {
         name: `twitter`,
-        url: `https://twitter.com/gatsbyjs`,
+        url: `https://twitter.com/`,
       },
       {
         name: `github`,
-        url: `https://github.com/gatsbyjs`,
+        url: `https://github.com/hakod`,
       },
     ],
   },

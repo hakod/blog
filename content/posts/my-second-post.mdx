@@ -1,10 +1,49 @@
 ---
-title: My Second Post! (example)
-date: 2019-05-15
+title: Event Loop
+date: 2019-10-22
 ---
 
-Wow! I love blogging so much already.
+The concurrency model describes how a programming language executes code independent of order to achieve improved performance.
 
-Did you know that "despite its name, salted duck eggs can also be made from chicken eggs, though the taste and texture will be somewhat different, and the egg yolk will be less rich."? ([Wikipedia Link](http://en.wikipedia.org/wiki/Salted_duck_egg))
+Modern Javascript engines utilize the event loop concurrency model. The event loop is divided between the Call Stack, Event Queue and Event. 
 
-Yeah, I didn't either.
+## Call Stack
+
+```jsx
+function a() {
+  return b()
+}
+function b() {
+  return 4
+}
+a(); 
+
+// function a is added to the bottom of the call stack // function b called by function a is added to the top of the stack
+// function b returns and is popped from the stack
+// function a returns, pops the frame, and empties the stack
+```
+
+When a Javascript function is called, it is added to the call stack as a frame. If the function calls another function, the newly called function is added to the top to the stack in its own frame. 
+
+Each function call is contained inside its own frame and subsequent function call frames are added above the former.
+
+As each function returns (beginning with the frame at the top of the call stack to the bottom), their frames are popped from the top until the Call Stack is emptied.
+
+## Heap
+
+The Heap is where objects are stored in memory. Javascript automatically allocates objects inside the heap and deletes objects that are no longer in use, called Garbage Collection. Objects inside the heap can be accessed for reading and writing data.
+
+## Event Queue
+
+The Event Queue is a list of messages to be passed to the Call Stack. New messages are added to the queue when there is an event with an event listener, each message containing its own function.
+
+ The queue sends only one message at a time, which must run to completion before sending the next. Messages are ordered from oldest to newest and sent in the same order to the Call Stack. The message processed is then removed from the queue. 
+
+The mesage removed from the queue calls the function with the message as its parameter. It is then added as a new frame in the Call Stack. Once the stack is empty, completing all frame functions, the queue sends its next oldest message.
+
+Messages can also be added through the setTimeout function (this inside setTimeout refers to the window unless bind, call, or apply are used). 
+
+The delay argument of setTimeout pushes the callback function parameter and message to the queue once the minimum set time is up.
+
+A delay argument of 0 will send the message once a minimum of 0 seconds are up and during this time non-delayed code is sent to queue first. Then the delayed message is sent to the queue to wait for the older messages to be sent to the call stack and finish their executions.
+
