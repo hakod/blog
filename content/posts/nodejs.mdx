@@ -1,0 +1,34 @@
+--
+title: Node.js & Runtime
+date: 2019-12-25
+--
+
+## Node.js & Runtime
+
+런타임은 코드가 실행될 수 있는 환경이다. Javascript의 경우, html 태그를 위해 첨부된 브라우저가 있다. 또 다른 런타임은 Node.js라고 하는데, "node <file name> 명령으로 실행할 수 있다. 노드.js는 자바시픽트를 이용한 서버 및 기타 소프트웨어의 개발을 허용한다. 브라우저와 Node.js 런타임의 한 가지 차이점은 브라우저의 창 개체와 Node.js의 글로벌 개체 둘 다 글로벌 스코프를 포함하고 있다는 것이다.
+
+
+## NVM(Node Version Manager)
+
+다른 버전의 Node.js는 런타임에 Javascript의 결과에 영향을 미칠 수 있다. 우리는 많은 다른 버전의 Node.js를 개발해야 하기 때문에 다른 버전으로 테스트해야 한다.
+
+NVM에 유용한 명령:
+
+시스템에 설치된 모든 Node.js 버전 표시
+• $ nvm ls
+
+Node.js의 특정 버전 설치
+• $ nvm install 10.13.2
+
+Node.js 버전으로 전환하려면 다음과 같이 하십시오.
+• $ nvm 사용 10.13.2
+
+
+## Package.json
+
+Package.json은 프로젝트에 필요한 모듈과 같은 유용한 정보와 코드를 실행하고 테스트하기 위한 스크립트를 나열한다. 모듈은 두 부분으로 나뉜다.
+
+• dependencies: 프로젝트를 실행하는 데 필요한 모듈
+• devDependency: 개발 목적에 필요한 모듈(example: Jest, ESLint)
+
+프로젝트는 일반적으로 필요한 모든 모듈과 함께 제공되지는 않는다. 대신, 그것은 패키지와 함께 올 것이다.어떤 모듈이 필요한지 보여주는 Package.json. 프로젝트를 복제하는 경우 패키지에 나열된 모듈 Package.json은 "npm install" 명령을 사용하여 로컬 프로젝트에 설치할 수 있다.
