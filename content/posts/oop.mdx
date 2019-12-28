@@ -2,50 +2,47 @@
 title: OOP, JS Object Instantiation Patterns, and Prototype
 date: 2019-12-28
 ---
+# OOP, JS Object Instantiation Patterns, and Prototype
 
 ## What is OOP
 
 OOP는 데이터 모델의 청사진을 활용하는 프로그래밍 설계 철학이다. OOP의 모든 것은 스스로 지속 가능한 ‘객관’으로 분류된다. 각 개체는 재사용의 네 가지 주요 개념을 통해 방법과 속성을 포함할 것이다. 클래스는 생성된 각 개체 인스턴스의 Blueprint입니다. 클래스는 객체 인스턴스를 생성, 수정 및 확장할 수 있는 생성자를 말한다.
 OOP 기본 개념
 캡슐화
-• 데이터 및 기능이 하나의 유닛 안에 포장되어 있음
-• 코드 설계를 숨기고 결과만 표시
-• 클래스의 각 인스턴스에 대해 수정 허용
+
+* 데이터 및 기능이 하나의 유닛 안에 포장되어 있음
+* 코드 설계를 숨기고 결과만 표시
+* 클래스의 각 인스턴스에 대해 수정 허용
 유산
-• 클래스 생성자가 속성 및 방법을 인스턴스(instance)에 전달(자녀에게 부모)
+* 클래스 생성자가 속성 및 방법을 인스턴스(instance)에 전달(자녀에게 부모)
 관념
-• 내부 코드를 생각하지 않고 내부 코드를 사용할 수 있음
+* 내부 코드를 생각하지 않고 내부 코드를 사용할 수 있음
 다형성
-• 자녀(물질)가 수업 중 물려받은 특성과 방법을 활용할 수 있도록 허용
+* 자녀(물질)가 수업 중 물려받은 특성과 방법을 활용할 수 있도록 허용
 
 
 ## JS Object Instantiation Patterns
 
-# Functional
+### Functional
 
-• 함수 내에서 개체를 만든 다음 개체를 반환
+* 함수 내에서 개체를 만든 다음 개체를 반환
 
 ```jsx
 var person = function(name,age) {
 	var person = {};
 	person.name = name;
-	person.age = age;
-	person.introduce = function() {return 'hello my name is ' + this.name}
-	return person;
-}
-
-let john = person('john', 23);
+	perEnsure the version of Node.js used at install time matches that used at runtimen = person('john', 23);
 
 john // returns { name: ‘john’, age: 23}
 ```
 
 
 
-# Functional Shared
+### Functional Shared
 
 
-• 각 객체 인스턴스에서 공간을 확보하기 위한 기능에서 방법 분리
-• 각 객체 인스턴스(instance)는 포인터를 사용하여 동일한 소스의 메소드를 가리킨다(확장 방법)
+* 각 객체 인스턴스에서 공간을 확보하기 위한 기능에서 방법 분리
+* 각 객체 인스턴스(instance)는 포인터를 사용하여 동일한 소스의 메소드를 가리킨다(확장 방법)
 
 ```jsx
 var person = function(name, age) {
@@ -74,12 +71,12 @@ john.introduce()
 ```
 
 
-# Prototypal
+### Prototypal
 
 
-• 기능 공유와 유사하게 확장 기능 대신 object.create() 메소드를 사용
-• Object.create() 기존 객체를 프로토타입으로 사용하여 새 객체 생성
-• 이를 통해 시제품 체인 접근 가능
+* 기능 공유와 유사하게 확장 기능 대신 object.create() 메소드를 사용
+* Object.create() 기존 객체를 프로토타입으로 사용하여 새 객체 생성
+* 이를 통해 시제품 체인 접근 가능
 
 ```jsx
 var person = function(name,age){
@@ -101,12 +98,12 @@ john.introduce();
 ```
 
 
-# Pseudoclassical
+### Pseudoclassical
 
 
-• new 키워드를 사용하여 새 개체 생성
-• this 키워드를 사용하여 인스턴스의 속성 인스턴스화
-• 프로토타입 키워드를 사용하여 방법 추가
+* new 키워드를 사용하여 새 개체 생성
+* this 키워드를 사용하여 인스턴스의 속성 인스턴스화
+* 프로토타입 키워드를 사용하여 방법 추가
 
 ```jsx
 var person = function(name,age){
@@ -123,7 +120,7 @@ john.introduce();
 ```
 
 
-# Prototypes
+## Prototypes
 
 자바스크립트는 수업이 없다. 자바스크립트는 프로토타입 기반의 언어로서 기능 사용과 새로운 키워드를 통해 유산을 모방한 것이다.
 

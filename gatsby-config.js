@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: "/reponame",
+  pathPrefix: "/blog",
   plugins: [
     {
       resolve: `gatsby-theme-blog`,
