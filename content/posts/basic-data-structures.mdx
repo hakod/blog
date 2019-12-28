@@ -23,7 +23,18 @@ class stack {
 		push(a){this.items.push(a)}
 	 pop() {this.items.pop()}
 		peek() {return this.items[this.items.length-1]}
-}content/assets/stack data structure.png “dirt”, the last element in the array    
+}
+let a = new stack();
+a.push('rock');
+a.push('dirt');
+a.push('grass');
+
+a // the instance returns a property array with [ “rock”, “dirt”, “grass” ]
+
+a.pop(); // pops the newest added element (“grass”)
+a // the instance returns a property array with [ “rock”, “dirt” ]
+
+a.peek(); // returns “dirt”, the last element in the array   
 ```
 
 스택 데이터 구조의 시각적 예는 땅에 구멍을 파는 것이다. 하층(선입)을 제거하려면 먼저 지구의 가장 바깥쪽 층(마지막 안)을 제거해야 한다.
