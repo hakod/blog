@@ -15,7 +15,7 @@ date: 2019-12-28
 * Peek()
     * 스택에 영향을 주지 않고 스택 내부의 최상위 요소 반환
 
-``jsx
+```jsx
 class stack {
   constructor() {  
 		this.items = [];
@@ -23,23 +23,12 @@ class stack {
 		push(a){this.items.push(a)}
 	 pop() {this.items.pop()}
 		peek() {return this.items[this.items.length-1]}
-}
-let a = new stack();
-a.push('rock');
-a.push('dirt');
-a.push('grass');
-
-a // the instance returns a property array with [ “rock”, “dirt”, “grass” ]
-
-a.pop(); // pops the newest added element (“grass”)
-a // the instance returns a property array with [ “rock”, “dirt” ]
-
-a.peek(); // returns “dirt”, the last element in the array    
-``
+}content/assets/stack data structure.png “dirt”, the last element in the array    
+```
 
 스택 데이터 구조의 시각적 예는 땅에 구멍을 파는 것이다. 하층(선입)을 제거하려면 먼저 지구의 가장 바깥쪽 층(마지막 안)을 제거해야 한다.
 
-![](content/assets/stack data structure.png)
+![](/content/assets/stack data structure.png)
 
 
 ## Queue
@@ -48,12 +37,12 @@ a.peek(); // returns “dirt”, the last element in the array
 
 * pop()
     * Dequeue
-• unshift()
+* unshift()
     * Enquue
-• peek()
+* peek()
     * 배열에서 가장 오래된 값(다음으로 튀겨짐)을 반환한다.
 
-``jsx
+```jsx
 class Queue {
     constructor() {
             this.data = [];
@@ -74,8 +63,8 @@ e //  data property array contains [ 4, 3, 2, 1]
 e.dequeue(); // removes 1 from the array
 
 e.peek(); // returns 2
-``
+```
 
 큐 데이터 구조를 시각적으로 생각해보면 다이빙 보드의 라인업을 상상할 수 있다. 각 잠수부들은 줄을 서서 줄을 서고, 줄에 있는 첫 번째 잠수부들은 다음 사람들이 차례대로 돌아가기 전에 보드에서 뛰어내려야 한다.
 
-![](content/assets/queue data structure.png)
+![](/content/assets/queue data structure.png)
