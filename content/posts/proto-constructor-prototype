@@ -1,0 +1,71 @@
+---
+title: __proto__, Constructor, and Prototype
+date: 2020-01-03
+---
+
+## __proto__
+
+__proto__는 브라우저가 프로토타입 객체에 부여하는 이름이다.
+
+```jsx
+function Person(name, age) {
+	this.name = name;
+	this.age = age;
+}
+
+var joe = new Person(‘joe’, 19);
+
+joe // 	age: 19, 
+	name: “joe”,
+ 	__proto__: Object { 
+				constructor: function Person(), 
+				__proto__: Object { … } }
+
+// joe has a __proto__ of Object with the constructor Person(), which was used to instantiate joe
+```
+
+
+
+## Constructor
+
+Constructor는 객체의 인스턴스를 생성하기 위해 실행되는 기능이다. 의사전파적 인스턴스화 패턴에서 새 연산자를 사용하여 함수에서 인스턴스를 생성한다.
+
+```jsx
+function Car(color, type, speed) {
+	this.color = color;
+	this.type = type;
+	this.speed = speed;
+}
+
+var kia = new Car(‘red’, ‘truck’, 50); // new operator to create a new instance of Car
+```
+
+
+## Prototype
+
+프로토타입은 프로토타입의 방법과 특성을 가진 물체다. 이 프로토타입 물체는 물체의 프로토타입 체인으로 알려진 것을 만들어내고, 그 생성자에 따라 방법과 속성을 보유한다. 각 물체는 __proto__ 객체를 가지고 있는데, 이 물체는 그 후손들이 접근할 수 있는, 그 생성자를 기준으로 서로 다른 속성을 가지고 있다. 속성이나 방법들은 프로토타입 체인을 찾아보고, 성냥이 발견될 때까지 각각의 __proto__을 점검한다. 프로토타입 체인의 끝은 null이며, 속성을 찾을 수 없으면 정의되지 않은 것이 반환된다.
+
+
+## Object.create()
+
+프로토타입의 인스턴스화 패턴에서 사용되는 방법으로서, 생성되는 물체의 원형으로서 인수를 전달한다.
+
+
+```jsx
+function Person(name) {
+	var person = Object.create(methods);
+	person.name = name;
+	return person;
+}
+
+var methods = {
+	sleep: function() { return 'zzz'},
+	eat: function() { return 'mmm'},
+	intro: function() { return this.name }
+}
+
+var tom = Person('tom')
+
+tom.intro() // tom
+tom.eat() // mmm
+```
